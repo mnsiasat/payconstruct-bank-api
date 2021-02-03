@@ -1,6 +1,7 @@
-import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn} from 'typeorm'
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn} from 'typeorm'
 import {Branch} from './Branch'
 import {Address} from './Address'
+import {Account} from './Account'
 
 @Entity({name: 'customers'})
 export class Customer {
@@ -19,6 +20,9 @@ export class Customer {
 
     @ManyToOne(type => Branch, branch => branch.customers)
     branch: Branch
+
+    @OneToMany(type => Account, account => account.customer, {cascade: true, eager: true})
+    accounts: Account[]
 
     @OneToOne(() => Address)
     @JoinColumn()

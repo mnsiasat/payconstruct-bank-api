@@ -8,8 +8,8 @@ export class Branch {
     @PrimaryGeneratedColumn('uuid', {name: 'branch_id'})
     branchId: string
 
-   @OneToMany(type => Customer, customer => customer.branch, { cascade: true, eager:true })
-   customers: Customer[]
+    @OneToMany(type => Customer, customer => customer.branch, {cascade: true, eager: true})
+    customers: Customer[]
 
     @OneToOne(() => Address)
     @JoinColumn()
