@@ -1,4 +1,3 @@
-import {Branch} from './src/entity/Branch'
 
 module.exports = {
     'type': 'postgres',
@@ -10,7 +9,7 @@ module.exports = {
     'synchronize': false,
     'logging': true,
     'entities': [
-        'dist/src/entity/*{.ts,.js}',
-        'src/entity/*{.ts,.js}'
+        'src/entity/*.ts',
     ],
+
 }

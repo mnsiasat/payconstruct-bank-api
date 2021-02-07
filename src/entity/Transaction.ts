@@ -1,27 +1,36 @@
-import {BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, TableInheritance} from 'typeorm'
-import {Customer} from './Customer'
-import {Branch} from './Branch'
+import {
+    Column,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn,
+    TableInheritance
+} from 'typeorm'
 import {Account} from './Account'
-import {TransactionType} from '../types'
 import {Field, ID, ObjectType} from 'type-graphql'
 
-@Entity('transactions')
+@Entity('bank_transactions')
 @TableInheritance({column: {type: 'varchar', name: 'type'}})
 @ObjectType()
-export abstract class Transaction extends BaseEntity {
+export abstract class Transaction {
 
     @PrimaryGeneratedColumn('uuid', {name: 'transaction_id'})
     @Field(type => ID)
     transactionId: string
 
-    @Column({
+   /* @Column({
         name: 'type',
         type: 'enum',
         enum: TransactionType,
         default: TransactionType.CREDIT
     })
     @Field(type=>TransactionType)
-    type: TransactionType
+    type: TransactionType*/
+
+    @ManyToOne(type => Account, account => account.transactions)
+    @JoinColumn({ name: "account_id" })
+    @Field(type=>Account)
+    account: Account
 
     @Column({scale: 2})
     @Field()

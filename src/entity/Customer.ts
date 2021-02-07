@@ -1,13 +1,12 @@
-import {BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn} from 'typeorm'
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn} from 'typeorm'
 import {Branch} from './Branch'
 import {Address} from './Address'
 import {Account} from './Account'
 import {Field, ID, ObjectType} from 'type-graphql'
-import {Transaction} from './Transaction'
 
 @Entity('customers')
 @ObjectType()
-export class Customer extends BaseEntity {
+export class Customer {
 
     @PrimaryGeneratedColumn('uuid', {name: 'customer_id'})
     @Field(type => ID)
