@@ -3,18 +3,20 @@ import {Account} from '../entity/Account'
 import {CreateAccountInput} from '../input/CreateAccountInput'
 import {getRepository, Repository} from 'typeorm'
 import {Customer} from '../entity/Customer'
-import * as _ from "lodash"
-import {ValidationError} from 'class-validator'
+import * as _ from 'lodash'
+import {Branch} from '../entity/Branch'
 
 @Resolver(of => Account)
 export class AccountResolver {
 
     private accountRepository: Repository<Account>
     private customerRepository: Repository<Customer>
+    private branchRepository: Repository<Branch>
 
     constructor() {
         this.accountRepository = getRepository(Account)
-        this.customerRepository =  getRepository(Customer)
+        this.customerRepository = getRepository(Customer)
+        this.branchRepository = getRepository(Branch)
     }
 
     @Query(() => Account)
@@ -23,7 +25,7 @@ export class AccountResolver {
     }
 
     @Mutation(() => Account)
-    async createAccount(@Arg('data') data: CreateAccountInput): Promise<Account> {
+    async createAccount(@Arg('input') data: CreateAccountInput): Promise<Account> {
         const {
             type,
             initialDeposit,
@@ -31,6 +33,7 @@ export class AccountResolver {
             middleName,
             lastName,
             customerId,
+            branchId,
 
         } = data
 
@@ -41,16 +44,34 @@ export class AccountResolver {
             throw new Error('Required to supply either customerId, or customer name details!')
         }
 
-        this.customerRepository.find({
-            where: {
+        const where = customerId ? {customerId} : {firstName, middleName, lastName}
 
-            },
+        let [existingCustomer] = await this.customerRepository.find({
+            where,
             take: 1
         })
 
+        if (!existingCustomer) {
+            const [branch] = await this.branchRepository.find({where: {branchId}, take: 1})
+
+            if(!branch){
+                throw new Error(`Invalid branch details, branch ID: ${branchId}!`)
+            }
+
+            const newCustomer = await this.customerRepository.create(
+                {
+                    firstName,
+                    middleName,
+                    lastName,
+                    branch
+                })
+            existingCustomer = await this.customerRepository.save(newCustomer)
+        }
+
         const account = this.accountRepository.create({
             type,
-            currentBalance: initialDeposit
+            currentBalance: initialDeposit,
+            customer: existingCustomer
         })
         return this.accountRepository.save(account)
 

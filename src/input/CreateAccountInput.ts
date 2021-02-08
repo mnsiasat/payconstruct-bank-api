@@ -4,8 +4,11 @@ import {AccountType} from '../types'
 @InputType()
 export class CreateAccountInput {
 
-    @Field(type => AccountType)
+    @Field(type => AccountType,{ defaultValue: AccountType.SAVINGS})
     type: AccountType
+
+    @Field()
+    branchId: string
 
     @Field({ defaultValue: 0})
     initialDeposit: number
@@ -14,12 +17,12 @@ export class CreateAccountInput {
     customerId?: string
 
     @Field({ nullable: true })
-    lastName?: number
+    lastName?: string
 
     @Field({ nullable: true })
-    firstName?: number;
+    firstName?: string;
 
     @Field({ nullable: true })
-    middleName?: number;
+    middleName?: string;
 
 }

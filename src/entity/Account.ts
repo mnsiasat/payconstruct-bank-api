@@ -9,7 +9,7 @@ import {
 import {Customer} from './Customer'
 import {Transaction} from './Transaction'
 import {Field, ID, ObjectType} from 'type-graphql'
-import {AccountType} from '../types'
+import {IsDefined} from 'class-validator'
 
 
 @Entity('accounts')
@@ -20,17 +20,22 @@ export class Account{
     @Field(type => ID)
     accountNumber: number
 
-    @Column({
+    /*@Column({
         name: 'type',
         type: 'enum',
         enum: AccountType,
         default: AccountType.SAVINGS
     })
     @Field(type=>AccountType)
-    type: AccountType
+    type: AccountType*/
+
+    @Column()
+    @Field()
+    type: string
 
     @ManyToOne(type => Customer, customer => customer.accounts)
     @JoinColumn({ name: "customer_id" })
+    @IsDefined()
     @Field(type=>Customer)
     customer: Customer
 
