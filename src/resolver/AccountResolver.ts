@@ -19,9 +19,9 @@ export class AccountResolver {
         this.branchRepository = getRepository(Branch)
     }
 
-    @Query(() => Account)
-    account(@Arg('account_number') accountNumber: string) {
-        return this.accountRepository.find({where: {accountNumber}, take: 1})
+    @Query(() => [Account])
+    getAllAccounts(@Arg('customerId') customerId: string) {
+        return this.accountRepository.find({where: {customer: customerId}})
     }
 
     @Mutation(() => Account)
@@ -74,28 +74,6 @@ export class AccountResolver {
             customer: existingCustomer
         })
         return this.accountRepository.save(account)
-
-        /*
-        Parameters:
-        => branchId
-        => type: string
-        => initialDeposit: number
-        =>
-        Steps:
-        1. Find Customer by lastName, firstName, middleName return customer_ID
-        2. If Customer doesnt exist
-            2.1  create new Customer
-             => lname, fname, mname
-             => address
-             => mobile
-             => email
-             => branchId
-        3. If Customer already exists OR Customer successfully created
-            3.1 Create new Account:
-            =>  type
-            => initialDeposit
-            => customerId
-        * */
     }
 }
 
