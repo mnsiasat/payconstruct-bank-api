@@ -24,6 +24,11 @@ export class AccountResolver {
         return this.accountRepository.find({where: {customer: customerId}})
     }
 
+    @Query(() => [Account])
+    account(@Arg('accountNumber') accountNumber: number) {
+        return this.accountRepository.find({where: {accountNumber}})
+    }
+
     @Mutation(() => Account)
     async createAccount(@Arg('input') data: CreateAccountInput): Promise<Account> {
         const {
