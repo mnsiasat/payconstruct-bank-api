@@ -1,7 +1,8 @@
 import {Transaction} from './Transaction'
-import {ObjectType} from 'type-graphql'
+import {Field, ObjectType} from 'type-graphql'
+import {ChildEntity, Column} from 'typeorm'
 
-//@ChildEntity()
+@ChildEntity()
 @ObjectType()
 export class TransferTransaction extends Transaction {
 
@@ -10,8 +11,12 @@ export class TransferTransaction extends Transaction {
     @Field(type=>Account)
     transferredFrom: Account*/
 
-  /*  @Column({name: 'transferred_to', nullable: false})
+    @Column()
+    @Field()
+    transferredFrom: string
+
+    @Column()
     @Field()
     transferredTo: string
-*/
+
 }

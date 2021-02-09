@@ -25,6 +25,10 @@ export class BranchResolver {
 
         const [bank] = await this.bankRepository.find({where: {bankId}, take: 1})
 
+        if(!bank){
+           throw new Error(`Invalid bankId: ${bankId}`)
+        }
+
         let address = this.addressRepository.create(addressInputs)
         address = await this.addressRepository.save(address)
 

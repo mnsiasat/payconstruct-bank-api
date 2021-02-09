@@ -1,8 +1,8 @@
 import {registerEnumType} from 'type-graphql'
 
 export enum TransactionType {
-    DEBIT = 'debit',
-    CREDIT = 'credit',
+    DEPOSIT = 'deposit',
+    WITHDRAWAL = 'withdrawal',
     TRANSFER = 'transfer'
 }
 

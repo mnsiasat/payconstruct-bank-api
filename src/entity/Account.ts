@@ -3,11 +3,9 @@ import {
     Entity,
     JoinColumn,
     ManyToOne,
-    OneToMany,
     PrimaryGeneratedColumn
 } from 'typeorm'
 import {Customer} from './Customer'
-import {Transaction} from './Transaction'
 import {Field, ID, ObjectType} from 'type-graphql'
 import {IsDefined} from 'class-validator'
 
@@ -20,7 +18,8 @@ export class Account{
     @Field(type => ID)
     accountNumber: number
 
-    /*@Column({
+    /** TODO: make enum work
+    @Column({
         name: 'type',
         type: 'enum',
         enum: AccountType,
@@ -43,12 +42,12 @@ export class Account{
     @Field()
     currentBalance: number
 
-    @OneToMany(type => Transaction, transaction => transaction.account, {cascade: true, eager: true})
-    @Field(type=>[Transaction])
-    transactions: Transaction[]
+    /** TODO: Temp comment-out, Joins don't currently support child entities/discriminator values.
+    @OneToMany(type => DepositTransaction, transaction => transaction.account, {cascade: true, eager: true})
+    @Field(type=>[DepositTransaction])
+    depositTransactions: DepositTransaction[]
 
-   /* @OneToMany(type => TransferTransaction, transaction => transaction.transferredFrom, {cascade: true, eager: true})
-    @Field(type=>[TransferTransaction])
-    transferTransactions: TransferTransaction[]*/
-
+    @OneToMany(type => WithdrawalTransaction, transaction => transaction.account, {cascade: true, eager: true})
+    @Field(type=>[WithdrawalTransaction])
+    withdrawalTransactions: WithdrawalTransaction[]*/
 }
