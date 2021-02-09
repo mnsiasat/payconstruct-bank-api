@@ -3,10 +3,10 @@
 ### Steps to Run: ###
 1. __Create .env file.__ Setup your environment variables
 
-   > DB=
-     DB_HOST=
-     DB_USER=
-     DB_PWD=
+   > DB=your-db
+     DB_HOST=your-db-host
+     DB_USER=your-db-user
+     DB_PWD=your-db-password
 
    
 2. __Run schema sync.__ "synchronize" in ormconfig.ts is set to false, since it syncs schemas with every application launch which can further lead to loss of existing data which we want to avoid in production. To run sync manually, use this command: 
