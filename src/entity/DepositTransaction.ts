@@ -4,7 +4,7 @@ import {Transaction} from './Transaction'
 import {TransactionType} from '../types'
 
 @ChildEntity(TransactionType.DEPOSIT)
-@ObjectType()
+@ObjectType({ implements: Transaction })
 export class DepositTransaction extends Transaction {
 
     @Column({name:'account_number', nullable: false})

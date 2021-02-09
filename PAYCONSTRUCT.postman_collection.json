@@ -204,7 +204,7 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query transferHistory($accountNumber: String!) {\n      transferHistory(accountNumber: $accountNumber) {\n          transferTo\n          amount\n      }\n}   ",
+						"query": "query transferHistory($accountNumber: String!) {\n      transferHistory(accountNumber: $accountNumber) {\n          transferTo\n          amount\n          createdAt\n      }\n}   ",
 						"variables": "{\n    \"accountNumber\": \"1\"\n}"
 					}
 				},

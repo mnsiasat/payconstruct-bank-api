@@ -4,7 +4,7 @@ import {ChildEntity, Column} from 'typeorm'
 import {TransactionType} from '../types'
 
 @ChildEntity(TransactionType.TRANSFER)
-@ObjectType()
+@ObjectType({ implements: Transaction })
 export class TransferTransaction extends Transaction {
 
     @Column()

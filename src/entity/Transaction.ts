@@ -4,11 +4,11 @@ import {
     PrimaryGeneratedColumn,
     TableInheritance, UpdateDateColumn
 } from 'typeorm'
-import {Field, ID, ObjectType} from 'type-graphql'
+import {Field, ID, InterfaceType} from 'type-graphql'
 
 @Entity('bank_transactions')
 @TableInheritance({column: {type: 'varchar', name: 'type'}})
-@ObjectType({ isAbstract: true })
+@InterfaceType()
 export abstract class Transaction {
 
     @PrimaryGeneratedColumn('uuid', {name: 'transaction_id'})
@@ -20,8 +20,10 @@ export abstract class Transaction {
     amount: number
 
     @CreateDateColumn({type: 'timestamp'})
+    @Field(type => Date)
     createdAt: Date
 
     @UpdateDateColumn({type: 'timestamp'})
+    @Field(type => Date)
     updatedAt: Date
 }
