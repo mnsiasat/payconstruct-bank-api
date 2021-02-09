@@ -8,4 +8,5 @@ export class CreateTransactionInput {
 
     @Field()
     amount: number
+
 }

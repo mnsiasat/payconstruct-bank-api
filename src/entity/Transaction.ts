@@ -8,7 +8,7 @@ import {Field, ID, ObjectType} from 'type-graphql'
 
 @Entity('bank_transactions')
 @TableInheritance({column: {type: 'varchar', name: 'type'}})
-@ObjectType()
+@ObjectType({ isAbstract: true })
 export abstract class Transaction {
 
     @PrimaryGeneratedColumn('uuid', {name: 'transaction_id'})
