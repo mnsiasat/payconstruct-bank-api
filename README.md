@@ -18,3 +18,10 @@
    > npm run start:dev
 
 4.  __Access the GraphQL endpoints.__ You may use Postman and import my postman collection <https://github.com/mnsiasat/payconstruct-bank-api/blob/master/PAYCONSTRUCT.postman_collection.json>
+
+
+### Entity Relationship Diagram: ###
+   * bank_transactions.type can be either of the following: 'deposit', 'withdrawal' or 'transfer'
+   * bank_transactions.account_number is only used if transaction is a 'deposit' or 'withdrawal'. If transaction is a 'transfer', we use 'transfer_from' and 'trannsfer_to'
+   
+![picture alt](https://github.com/mnsiasat/payconstruct-bank-api/blob/master/erd.png "Title is optional")
