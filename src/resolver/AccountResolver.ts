@@ -5,6 +5,7 @@ import {getRepository, Repository} from 'typeorm'
 import {Customer} from '../entity/Customer'
 import * as _ from 'lodash'
 import {Branch} from '../entity/Branch'
+import generateAccountNumber from '../util/accountNumberGenerator'
 
 @Resolver(of => Account)
 export class AccountResolver {
@@ -74,6 +75,7 @@ export class AccountResolver {
         }
 
         const account = this.accountRepository.create({
+            accountNumber: generateAccountNumber(),
             type,
             currentBalance: initialDeposit,
             customer: existingCustomer

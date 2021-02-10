@@ -2,8 +2,7 @@ import {
     Column,
     Entity,
     JoinColumn,
-    ManyToOne,
-    PrimaryGeneratedColumn
+    ManyToOne, PrimaryColumn
 } from 'typeorm'
 import {Customer} from './Customer'
 import {Field, ID, ObjectType} from 'type-graphql'
@@ -14,9 +13,9 @@ import {IsDefined} from 'class-validator'
 @ObjectType()
 export class Account{
 
-    @PrimaryGeneratedColumn({name:'account_number'})
+    @PrimaryColumn({name:'account_number'})
     @Field(type => ID)
-    accountNumber: number
+    accountNumber: string
 
     /** TODO: make enum work
     @Column({

@@ -4,7 +4,7 @@ import {Field, InputType} from 'type-graphql'
 export class CreateTransactionInput {
 
     @Field()
-    accountNumber: number
+    accountNumber: string
 
     @Field()
     amount: number

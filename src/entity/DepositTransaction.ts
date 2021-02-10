@@ -9,6 +9,6 @@ export class DepositTransaction extends Transaction {
 
     @Column({name:'account_number', nullable: false})
     @Field()
-    accountNumber: number
+    accountNumber: string
 
 }

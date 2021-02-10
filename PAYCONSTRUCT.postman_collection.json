@@ -23,7 +23,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation createBranch($input: CreateBranchInput!) {\n      createBranch(input: $input) {\n        branchId\n        bank {\n            name\n        }\n        address {\n            state\n            country\n        }\n      }\n}",
-						"variables": "{\n    \"input\": {\n        \"bankId\":\"13df7fd7-2f1c-4944-ae89-3658289a3462\",\n        \"line1\":\"4273  Catherine Drive\",\n        \"line2\":\"\",\n        \"city\":\"Warwick\",\n        \"zipcode\":\"58381\",\n        \"state\":\"ND\",\n        \"country\":\"US\"\n    }\n}"
+						"variables": "{\n    \"input\": {\n        \"bankId\":\"f582b698-09bc-4fe4-b482-f1bf6ad295a2\",\n        \"line1\":\"4273  Catherine Drive\",\n        \"line2\":\"\",\n        \"city\":\"Warwick\",\n        \"zipcode\":\"58381\",\n        \"state\":\"ND\",\n        \"country\":\"US\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -49,7 +49,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation createAccount($input: CreateAccountInput!) {\n      createAccount(input: $input) {\n          accountNumber\n          type\n          currentBalance\n          customer {\n              customerId\n              firstName\n              middleName\n              lastName\n          }\n\n      }\n}",
-						"variables": "{\n    \"input\": {\n       \"branchId\": \"102a096d-0784-4ae4-8292-5ddfdb6fce6a\",\n       \"type\": \"CHECKING\",\n       \"initialDeposit\": 5000.00,\n       \"lastName\": \"Clarkson\",\n       \"firstName\": \"Jim\",\n       \"middleName\": \"Andersen\"\n    }\n}"
+						"variables": "{\n    \"input\": {\n       \"branchId\": \"e709d266-3a84-404c-b08e-7edffde9b1e7\",\n       \"type\": \"CHECKING\",\n       \"initialDeposit\": 25000.00,\n       \"lastName\": \"Clarkson\",\n       \"firstName\": \"Jim\",\n       \"middleName\": \"Andersen\"\n    }\n}"
 					}
 				},
 				"url": {
@@ -127,7 +127,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation deposit($input: CreateTransactionInput!) {\n      deposit(input: $input) {\n         accountNumber\n         amount\n      }\n}",
-						"variables": "{\n    \"input\": {\n        \"accountNumber\":1,\n        \"amount\": 3500.00\n    }\n}"
+						"variables": "{\n    \"input\": {\n        \"accountNumber\":\"194394142964\",\n        \"amount\": 14500.00\n    }\n}"
 					}
 				},
 				"url": {
@@ -153,7 +153,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation withdraw($input: CreateTransactionInput!) {\n      withdraw(input: $input) {\n         accountNumber\n         amount\n      }\n}",
-						"variables": "{\n    \"input\": {\n        \"accountNumber\":1,\n        \"amount\": 5000.00\n    }\n}"
+						"variables": "{\n    \"input\": {\n        \"accountNumber\":\"612948341416\",\n        \"amount\": 8000.00\n    }\n}"
 					}
 				},
 				"url": {
@@ -179,7 +179,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation transfer($input: CreateTransferTransactionInput!) {\n      transfer(input: $input) {\n        transferFrom\n        transferTo\n        amount\n      }\n}",
-						"variables": "{\n    \"input\": {\n        \"transferFrom\":\"1\",\n        \"transferTo\":\"2\",\n        \"amount\": 5000.00\n    }\n}"
+						"variables": "{\n    \"input\": {\n        \"transferFrom\":\"194394142964\",\n        \"transferTo\":\"612948341416\",\n        \"amount\": 5000.00\n    }\n}"
 					}
 				},
 				"url": {
@@ -205,7 +205,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "query transferHistory($accountNumber: String!) {\n      transferHistory(accountNumber: $accountNumber) {\n          transferTo\n          amount\n          createdAt\n      }\n}   ",
-						"variables": "{\n    \"accountNumber\": \"1\"\n}"
+						"variables": "{\n    \"accountNumber\": \"194394142964\"\n}"
 					}
 				},
 				"url": {
