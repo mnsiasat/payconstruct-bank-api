@@ -1,5 +1,7 @@
 # payconstruct-bank-api
 
+repo used during takehome exam/assignment challenge.
+
 ### Steps to Run: ###
 1. __Create .env file.__ Setup your environment variables
 
